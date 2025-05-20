@@ -1,10 +1,9 @@
-#import serial
 import csv
 import time
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression # Example model
-from sklearn.ensemble import RandomForestRegressor # Another example model
+from sklearn.linear_model import LinearRegression 
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 import os
@@ -99,11 +98,6 @@ def train_and_evaluate_model(csv_filename):
     print(f"Training data size: {X_train.shape[0]}")
     print(f"Testing data size: {X_test.shape[0]}")
 
-    # --- Choose and Train a Model ---
-    # Option 1: Linear Regression
-    # model = LinearRegression()
-
-    # Option 2: Random Forest Regressor (often more robust for non-linear relationships)
     model = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
 
     model.fit(X_train, y_train)
@@ -152,16 +146,13 @@ def train_and_evaluate_model(csv_filename):
 
 
 if __name__ == "__main__":
-    #    data_collection_time_seconds = 30 # 30 seconds for a quick test
+    # data_collection_time_seconds = 30 # 30 seconds for a quick test
 
-    # Comment out data collection if you already have a CSV file
     # success = collect_data_from_pico(SERIAL_PORT, BAUD_RATE, PC_CSV_FILENAME, data_collection_time_seconds)
     # if not success:
     #     print("Data collection failed. Exiting.")
     #     exit()
 
-    # Stage 2: Train and Evaluate Model
-    # This assumes you have collected data into PC_CSV_FILENAME
     trained_model = train_and_evaluate_model(PC_CSV_FILENAME)
 
     if trained_model:
